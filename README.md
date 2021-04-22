@@ -6,13 +6,13 @@ Check current limitations here https://cap.cloud.sap/docs/releases/mar21#tailore
 
 ## Setup and deploy
 
-`` 
-npm install\
+```bash
+npm install
 cds build
-``
+```
 
 For local testing, create a new default-env.json file with your hana service credentials:  
-``
+```
 {  
   "VCAP_SERVICES": {  
     "hana": [  
@@ -30,18 +30,18 @@ For local testing, create a new default-env.json file with your hana service cre
     ]  
   }  
 }  
-``  
+``` 
 
 To deploy to BTP run the following commands:  
-``
+```bash
 mbt build  
 cf deploy ....  
-`` 
+```
 
 ## Scenario
 
 Entity Books is annotated with @cds.search:  
-``  
+```  
 @cds.search : {title, descr: false, author.name }  
 entity Books : managed {  
   key ID : Integer;  
@@ -53,7 +53,7 @@ entity Books : managed {
   price  : Decimal(9,2);  
   currency : Currency;  
 }  
-``  
+``` 
 Run and open fiori preview for browse/Books.
 Try out different searches by the Search field:
 - by title -> works fine
