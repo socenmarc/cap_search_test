@@ -7,7 +7,7 @@ Check current limitations here https://cap.cloud.sap/docs/releases/mar21#tailore
 ## Setup and deploy
 
 `` 
-npm install</br>
+npm install<br/>
 cds build
 ``
 
