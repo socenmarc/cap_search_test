@@ -4,7 +4,7 @@ This project has been developed to test the @cds.search annotation.
 CAP docs about @cds.search usage here https://cap.cloud.sap/docs/guides/providing-services#search, section Searching data.
 Check current limitations here https://cap.cloud.sap/docs/releases/mar21#tailored-search-with-cdssearch.
 
-## Seteup and deploy
+## Setup and deploy
 
 `` 
 npm install
