@@ -1,23 +1,64 @@
 # Getting Started
+ 
+This project has been developed to test the @cds.search annotation.
+CAP docs about @cds.search usage here https://cap.cloud.sap/docs/guides/providing-services#search, section Searching data.
+Check current limitations here https://cap.cloud.sap/docs/releases/mar21#tailored-search-with-cdssearch.
 
-Welcome to your new project.
+## Seteup and deploy
 
-It contains these folders and files, following our recommended project layout:
+`` 
+npm install
+cds build
+``
 
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
+For local testing, create a new default-env.json file with your hana service credentials:
+``
+{
+  "VCAP_SERVICES": {
+    "hana": [
+      {
+        "name": "cap_search_test-db",
+        "tags": [
+          "hana"
+        ],
+        "credentials": {
+          "certificate": 
+          .....
+          "user": ...
+        }
+      }
+    ]
+  }
+}
+``
 
+To deploy to BTP run the following commands:
+``
+mbt build
+cf deploy ....
+`` 
 
-## Next Steps
+## Scenario
 
-- Open a new terminal and run `cds watch` 
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
+Entity Books is annotated with @cds.search:
+``
+@cds.search : {title, descr: false, author.name }
+entity Books : managed {
+  key ID : Integer;
+  title  : localized String(111);
+  descr  : localized String(1111);
+  author : Association to Authors;
+  genre  : Association to Genres;
+  stock  : Integer;
+  price  : Decimal(9,2);
+  currency : Currency;
+}
+``
+Run and open fiori preview for browse/Books.
+Try out different searches by the Search field:
+- by title -> works fine
+- by descr -> doesn't work, because is searching and it doesnt because of descr: false
+- by author's name -> as mentioned in the docs doesn't work (see current limitations link at top of this document).
 
 
 ## Learn More
