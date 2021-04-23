@@ -7,7 +7,7 @@ service CatalogService @(path:'/browse') {
       author.alias as alias
   } excluding { createdBy, modifiedBy };
 
-  @readonly entity Authors as SELECT from my.Authors {
+  entity Authors as SELECT from my.Authors {
       *
   } excluding { createdBy, modifiedBy };
 
